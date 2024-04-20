@@ -17,9 +17,21 @@
       'purchaseURL' => 'http://example.com'
     ],
     [
-      'name' => 'Perdida',
-      'year' => '2013',
-      'author' => 'Carina Rissi',
+      'name' => 'Pride and Prejudice',
+      'year' => '1813',
+      'author' => 'Jane Austen',
+      'purchaseURL' => 'http://example.com'
+    ],
+    [
+      'name' => 'Sense and Sensibility',
+      'year' => '1811',
+      'author' => 'Jane Austen',
+      'purchaseURL' => 'http://example.com'
+    ],
+    [
+      'name' => 'Emma',
+      'year' => '1816',
+      'author' => 'Jane Austen',
       'purchaseURL' => 'http://example.com'
     ],
     [
@@ -29,15 +41,39 @@
       'purchaseURL' => 'http://example.com'
     ]
   ];
+
+  function filterByAuthor($books, $author)
+  {
+    $filteredList = [];
+    foreach ($books as $book) {
+      if ($book['author'] === $author) {
+        $filteredList[] = $book;
+      }
+    }
+    return $filteredList;
+  }
+
   ?>
 
+  <h3>Unfiltered List</h3>
   <ul>
     <?php foreach ($books as $book) { ?>
-      <li>
-        <a href="<?= $book['purchaseURL'] ?>">
-          <?= $book['name'] ?> <?= $book['year'] ?>
-        </a>
-      </li>
+        <li>
+          <a href="<?= $book['purchaseURL'] ?>">
+            <?= $book['name'] ?> <?= $book['year'] ?>
+          </a>
+        </li>
+    <?php } ?>
+  </ul>
+
+  <h3>Filtered List (Jane Austen)</h3>
+  <ul>
+    <?php foreach (filterByAuthor($books, 'Jane Austen') as $book) { ?>
+        <li>
+          <a href="<?= $book['purchaseURL'] ?>">
+            <?= $book['name'] ?> <?= $book['year'] ?>
+          </a>
+        </li>
     <?php } ?>
   </ul>
 </body>
